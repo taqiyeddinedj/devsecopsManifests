@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/taqiyeddinedj/devsecops.git
+    repoURL: https://github.com/taqiyeddinedj/devsecopsManifests.git
     targetRevision: HEAD
     path: manifests
   destination:
