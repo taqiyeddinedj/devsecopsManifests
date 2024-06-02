@@ -32,6 +32,7 @@ pipeline {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'default', contextName: '', credentialsId: 'k8s-cred', namespace: 'devsecops', restrictKubeConfigAccess: false, serverUrl: 'https://10.231.10.16:6443') {
                     sh "kubectl apply -f application.yaml"
+                    sh "git pull"
                 }
             }
         }
