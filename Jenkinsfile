@@ -14,7 +14,7 @@ pipeline {
 
         stage('Update Git Repository') {
             steps {
-                sh "sed -i 's|taqiyeddinedj/devsecops:.*|taqiyeddinedj/devsecops:webapp-${params.DOCKERTAG}|g' deploy.yaml"
+                sh "sed -i 's|taqiyeddinedj/devsecops:.*|taqiyeddinedj/devsecops:webapp-${params.DOCKERTAG}|g' manifests/deploy.yaml"
 
                 withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh """
