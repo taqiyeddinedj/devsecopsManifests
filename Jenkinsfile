@@ -32,7 +32,19 @@ pipeline {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'default', contextName: '', credentialsId: 'k8s-cred', namespace: 'devsecops', restrictKubeConfigAccess: false, serverUrl: 'https://10.231.10.16:6443') {
                     sh "kubectl apply -f application.yaml"
-                    sh "git pull"
+                }
+            }
+        }
+
+        stage('Fetching latest Git repo data') {
+            steps {
+
+                withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sh """
+                        git config --global user.email "djouani.taqiyeddine@gmail.com"
+                        git config --global user.name "${GIT_USERNAME}"
+                        git pull https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/taqiyeddinedj/devsecopsManifests.git main
+                    """
                 }
             }
         }
