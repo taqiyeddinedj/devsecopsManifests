@@ -31,5 +31,5 @@ spec:
           containerPort: 5000
         resources:
           requests:
-            memory: "100Mi"  
+            memory: "50Mi"  
             cpu: "50m"
